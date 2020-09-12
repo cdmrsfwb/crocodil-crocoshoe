@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head_title %}Cart{% endblock %}
+
+
+{% block content %}
+
+    <!--Main layout-->
+    <main class="mt-4 pt-2">
+        <div class="container">
+
+            <div class="table-responsive text-nowrap text-white">
+                <h2 class="my-4 h2">Order Summary</h2>
+                <table class="table text-white">
+                    <tbody>
+                        {% for order_item in order.items.all %}
+                            <tr>
+                                <td class="align-middle">
+                                    <strong>
+                                        <a class="text-white" href="{{ order_item.item.get_absolute_url }}">{{ order_item.item.name }}</a>
+                                    </strong>
+                                </td>
+                                <td class="d-none d-md-block">
+                                    <a href="{{ order_item.item.get_absolute_url }}"><img src="{% static order_item.item.image %}" width=100></a>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="{% url 'core:remove-single-item-from-cart' order_item.item.slug %}">
+                                        <i class="fas fa-minus mr-2 text-white"></i>
+                                    </a>
+                                    {{ order_item.quantity }}
+                                    <a href="{% url 'core:add-to-cart' order_item.item.slug %}">
+                                        <i class="fas fa-plus ml-2 text-white"></i>
+                                    </a>
+                                </td>
+                                <td class="text-right align-middle">
+                                    <strong><i class="fas fa-coins text-warning"></i> {{ order_item.item.price }}</strong>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="{% url 'core:remove-from-cart' order_item.item.slug %}">
+                                        <i class="fas fa-trash text-danger"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td>Your cart is empty</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href='/' class='btn btn-primary'>Continue shopping</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        {% if order.subtotal %}
+                            <tr>
+                                <td colspan="4" class="text-right">
+                                    <strong>Subtotal ({{ order.items.count }} item{% if order.items.count != 1 %}s{% endif %}): <i class="fas fa-coins text-warning"></i> {{ order.subtotal }}</strong>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-right">
+                                    <a href='/' class='btn btn-success'>Continue shopping</a>
+                                    <a href='/checkout' class='btn btn-warning ml-3'>Proceed to checkout</a>
+                                </td>
+                                <td></td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--Main layout-->
+
+{% endblock %}

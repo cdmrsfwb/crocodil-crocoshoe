@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head_title %}{{ object.name }}{% endblock %}
+
+
+{% block content %}
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container white-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <img src="{% static object.image %}" class="img-fluid" alt='{{ object.image_desc }}'>
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="px-4">
+
+            <h6 class="mb-3 text-white-50">
+                Size: {{ object.get_size_display }}
+            </h6>
+
+            <p class="lead">
+              <strong><i class="fas fa-coins text-warning"></i> {{ object.price }}</strong>
+            </p>
+
+            <p class="lead font-weight-bold">{{ object.name }}</p>
+
+            <p>{{ object.description }}</p>
+
+            {% comment %} <form class="d-flex justify-content-left">
+              <!-- Default input -->
+              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+
+            </form> {% endcomment %}
+
+            <a href="{{ object.get_add_to_cart_url }}" class="btn btn-warning btn-md my-0 p">Add to cart
+              <i class="fas fa-shopping-cart ml-1"></i>
+            </a>
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr>
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+{% endblock %}

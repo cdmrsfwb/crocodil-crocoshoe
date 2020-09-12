@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head_title %}Checkout{% endblock %}
+
+
+{% block content %}
+  <main class="mt-4 pt-4">
+    <div class="container">
+      <div class="row wow fadeIn">
+        <div class="col-md-8 offset-md-2 col-10 offset-1 text-center text-white">
+          <h2 class="my-4 h2">Are you sure you wanna spend all that money?</h2>
+          <a href="/buy" class="btn btn-warning ml-3">Yes</a>
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

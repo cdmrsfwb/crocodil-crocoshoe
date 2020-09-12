@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head_title %}Get Rich{% endblock %}
+
+
+{% block content %}
+    <main class="mt-4 pt-4">
+        <div class="container">
+            <div class="row wow{% if not clicked %} fadeIn{% endif %}">
+                <div class="col-md-8 offset-md-2 col-10 offset-1 text-center text-white">
+                    <h2 class="my-4 h2">The button below will make you richer</h2>
+                    <marquee direction="down" height=200 behavior="alternate" scrollamount="15">
+                            <marquee behavior="alternate" scrollamount="30">
+                                <a href="/get-richer" class="btn btn-warning ml-3">Click here</a>
+                            </marquee>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+{% if clicked %}{% block footer_fade %}{% endblock %}{% endif %}

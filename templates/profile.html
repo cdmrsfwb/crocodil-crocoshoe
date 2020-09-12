@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head_title %}{{ request.user }}'s Profile{% endblock %}
+
+
+{% block content %}
+    <main class="mt-4 pt-2">
+        <div class="container text-white my-4">
+            <div class="row wow fadeIn">
+                <div class="col-10 offset-1">
+                    <h2 class="mb-3 h2">Profile - {{ request.user }}</h2>
+                    <strong><i class="fas fa-coins text-warning"></i> {{ request.user.player.credit }}</strong>
+                    <div class="table-responsive text-nowrap text-white mt-4">
+                        <table class="table text-white">
+                            <tbody>
+                                {% for object in object_list %}
+                                    <tr>
+                                        <td class="d-none d-md-block">
+                                            <a href="{{ object.item.get_absolute_url }}"><img src="{% static object.item.image %}" width=150></a>
+                                        </td>
+                                        <td class="align-middle">
+                                            <strong>
+                                                <a class="text-white" href="{{ order_item.item.get_absolute_url }}">{{ object.item.name }}</a>
+                                            </strong>
+                                        </td>
+                                        <td class="text-right align-middle">
+                                            <h6 class="h6">
+                                                <strong>
+                                                    {% if object.number_owned %}<span class="text-success">OWNED: {{ object.number_owned }}</span>
+                                                    {% else %}<span class="text-danger">LOCKED</span>{% endif %}
+                                                </strong>
+                                            </h6>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
