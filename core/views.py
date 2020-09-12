@@ -54,16 +54,19 @@ def about(request):
     return render(request, 'about.html')
 
 
+@login_required
 def clicky(request):
     return render(request, 'clicky.html', {'clicked': False})
 
 
+@login_required
 def get_richer(request):
     request.user.player.credit += 100
     request.user.player.save()
     return redirect("core:iamrichnow")
 
 
+@login_required
 def iamrichnow(request):
     return render(request, 'clicky.html', {'clicked': True})
 
