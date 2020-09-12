@@ -1,0 +1,15 @@
+.my-bar {
+  background-color: #2c352a;
+}
+
+.my-bar2 {
+  background-color: #435040;
+}
+
+#bg {
+  background: rgb(88, 104, 92) url("/static/img/background3-2.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
